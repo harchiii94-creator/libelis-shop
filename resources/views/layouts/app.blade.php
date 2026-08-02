@@ -83,14 +83,14 @@
             </footer>
         </div>
 
-        <div class="fixed right-5 bottom-24 z-50 flex flex-col items-end gap-3">
-            <a href="{{ route('chatbot.index') }}" class="inline-flex items-center gap-2 rounded-full bg-[#2FA884] px-4 py-3 text-sm font-semibold text-white shadow-2xl transition hover:scale-105">
+        <div class="fixed right-4 bottom-4 z-50 flex w-full max-w-[calc(100vw-2rem)] flex-col items-end gap-3 px-4 sm:right-5 sm:bottom-24 sm:max-w-max sm:px-0">
+            <a href="{{ route('chatbot.index') }}" class="inline-flex w-full max-w-sm items-center justify-center gap-2 rounded-full bg-[#2FA884] px-4 py-3 text-sm font-semibold text-white shadow-2xl transition hover:scale-105 sm:w-auto">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
-                    <path d="M21 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v10zM7 9h10M7 13h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                    <path d="M21 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2 2h11a2 2 0 0 1 2 2v10zM7 9h10M7 13h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
                 </svg>
                 Chatbot
             </a>
-            <a href="https://wa.me/{{ config('services.whatsapp.number') }}?text={{ urlencode('Halo ' . $siteName . ', saya ingin bertanya tentang produk anda') }}" target="_blank" class="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-3 text-sm font-semibold text-white shadow-2xl transition hover:scale-105">
+            <a href="https://wa.me/{{ config('services.whatsapp.number') }}?text={{ urlencode('Halo ' . $siteName . ', saya ingin bertanya tentang produk anda') }}" target="_blank" class="inline-flex w-full max-w-sm items-center justify-center gap-2 rounded-full bg-[#25D366] px-4 py-3 text-sm font-semibold text-white shadow-2xl transition hover:scale-105 sm:w-auto">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
                     <path d="M21.707 4.293a1 1 0 0 0-1.414 0L15.586 9H9a5 5 0 0 0-5 5v.586L2.293 14.293A1 1 0 0 0 1 15.293V19a1 1 0 0 0 1 1h3.707a1 1 0 0 0 .707-.293l2.708-2.707H14a7 7 0 0 0 7-7V5a1 1 0 0 0-.293-.707z" />
                 </svg>
