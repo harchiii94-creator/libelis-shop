@@ -8,7 +8,7 @@
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="bg-[#EEEEEE] text-slate-900 antialiased">
+    <body class="bg-[#EEEEEE] text-slate-900 antialiased overflow-x-hidden">
         <div class="min-h-screen flex flex-col">
             <header class="bg-white/95 backdrop-blur border-b border-slate-200 sticky top-0 z-40 shadow-sm">
                 <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -30,8 +30,8 @@
                             @endauth
                         </nav>
 
-                        <div class="flex flex-wrap items-center gap-3">
-                            <a href="{{ route('cart.index') }}" class="relative inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-800 shadow-sm hover:border-[#2FA884] transition">
+                        <div class="flex flex-wrap items-center gap-3 justify-end">
+                            <a href="{{ route('cart.index') }}" class="relative inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-2 text-sm text-slate-800 shadow-sm hover:border-[#2FA884] transition">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-5 w-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 7.5M17 13l1.5 7.5M6 21h12" />
                                 </svg>
@@ -83,14 +83,14 @@
             </footer>
         </div>
 
-        <div class="fixed right-4 bottom-4 z-50 flex w-full max-w-[calc(100vw-2rem)] flex-col items-end gap-3 px-4 sm:right-5 sm:bottom-24 sm:max-w-max sm:px-0">
-            <a href="{{ route('chatbot.index') }}" class="inline-flex w-full max-w-sm items-center justify-center gap-2 rounded-full bg-[#2FA884] px-4 py-3 text-sm font-semibold text-white shadow-2xl transition hover:scale-105 sm:w-auto">
+        <div class="fixed left-4 right-4 bottom-4 z-50 flex w-full max-w-[360px] flex-col gap-3 px-0 sm:left-auto sm:right-5 sm:bottom-24 sm:w-auto sm:max-w-none sm:items-end sm:px-0">
+            <a href="{{ route('chatbot.index') }}" class="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#2FA884] px-4 py-3 text-sm font-semibold text-white shadow-2xl transition hover:scale-105 sm:w-auto">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
                     <path d="M21 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2 2h11a2 2 0 0 1 2 2v10zM7 9h10M7 13h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
                 </svg>
                 Chatbot
             </a>
-            <a href="https://wa.me/{{ config('services.whatsapp.number') }}?text={{ urlencode('Halo ' . $siteName . ', saya ingin bertanya tentang produk anda') }}" target="_blank" class="inline-flex w-full max-w-sm items-center justify-center gap-2 rounded-full bg-[#25D366] px-4 py-3 text-sm font-semibold text-white shadow-2xl transition hover:scale-105 sm:w-auto">
+            <a href="https://wa.me/{{ config('services.whatsapp.number') }}?text={{ urlencode('Halo ' . $siteName . ', saya ingin bertanya tentang produk anda') }}" target="_blank" class="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-4 py-3 text-sm font-semibold text-white shadow-2xl transition hover:scale-105 sm:w-auto">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
                     <path d="M21.707 4.293a1 1 0 0 0-1.414 0L15.586 9H9a5 5 0 0 0-5 5v.586L2.293 14.293A1 1 0 0 0 1 15.293V19a1 1 0 0 0 1 1h3.707a1 1 0 0 0 .707-.293l2.708-2.707H14a7 7 0 0 0 7-7V5a1 1 0 0 0-.293-.707z" />
                 </svg>
