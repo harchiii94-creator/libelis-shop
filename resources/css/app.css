@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+:root {
+    color-scheme: light;
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    background-color: #EEEEEE;
+}
+
+* {
+    transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, box-shadow 180ms ease,
+        transform 180ms ease;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background: #EEEEEE;
+    color: #1F2937;
+}
+
+button,
+input,
+textarea,
+select {
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+    background: rgba(111, 207, 151, 0.25);
+}
