@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Category;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,10 +22,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::composer('*', function ($view) {
-            $view->with('siteName', 'libellis-shop');
-            $view->with('navbarCartCount', array_sum(session('cart', [])));
-            $view->with('brandCategories', Category::pluck('name', 'slug')->toArray());
+        if (app()->isProduction()) {
+        URL::forceScheme('https');
+    }
+
+    View::composer('*', function ($view) {
+        $view->with('siteName', 'libellis-shop');
+        $view->with('navbarCartCount', array_sum(session('cart', [])));
+        $view->with('brandCategories', Category::pluck('name', 'slug')->toArray());
         });
     }
 }
