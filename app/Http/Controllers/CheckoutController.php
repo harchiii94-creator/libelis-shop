@@ -139,12 +139,17 @@ class CheckoutController extends Controller
                     'enabled_payments' => config('midtrans.enabled_payments'),
                 ];
 
+
+                logger()->info('Midtrans createTransaction params: ' . json_encode($params));
                 $response = $midtrans->createTransaction($params);
+                logger()->info('Midtrans createTransaction response: ' . json_encode($response));
 
                 // Midtrans Snap returns redirect_url for full-page redirect
                 if (!empty($response->redirect_url)) {
+                    logger()->info('Midtrans redirect_url found: ' . $response->redirect_url);
                     return redirect()->away($response->redirect_url);
                 }
+                logger()->warning('Midtrans createTransaction did not return redirect_url', (array) $response);
 
                 // fallback: go to order success page
             } catch (\Exception $e) {
