@@ -52,6 +52,9 @@ Route::fallback(function () {
     return response()->view('errors.404', [], 404);
 });
 
+// Midtrans webhook (no auth)
+Route::post('/payment/midtrans/webhook', [App\Http\Controllers\MidtransController::class, 'webhook'])->name('payment.midtrans.webhook');
+
 // Admin routes
 Route::get('/admin/login', [App\Http\Controllers\AdminAuthController::class, 'showLogin'])->name('admin.login');
 Route::post('/admin/login', [App\Http\Controllers\AdminAuthController::class, 'authenticate'])->name('admin.login.submit');

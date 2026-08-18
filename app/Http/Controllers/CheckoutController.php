@@ -120,6 +120,37 @@ class CheckoutController extends Controller
         }
         session(['cart' => $cart]);
 
+        // Jika Midtrans diaktifkan di config, buat transaksi Snap dan redirect
+        if (config('midtrans.enabled') && $validated['payment_method'] === 'transfer') {
+            try {
+                $midtrans = app(\App\Services\MidtransService::class);
+
+                $params = [
+                    'transaction_details' => [
+                        'order_id' => 'order-' . $order->id,
+                        'gross_amount' => (int) $order->total_price,
+                    ],
+                    'customer_details' => [
+                        'first_name' => $order->buyer_name,
+                        'email' => $order->buyer_email,
+                        'phone' => $order->buyer_phone,
+                    ],
+                ];
+
+                $response = $midtrans->createTransaction($params);
+
+                // Midtrans Snap returns redirect_url for full-page redirect
+                if (!empty($response->redirect_url)) {
+                    return redirect()->away($response->redirect_url);
+                }
+
+                // fallback: go to order success page
+            } catch (\Exception $e) {
+                // Log but allow flow to continue to success page
+                logger()->error('Midtrans create transaction failed: ' . $e->getMessage());
+            }
+        }
+
         return redirect()->route('order.success', $order);
     }
 
@@ -133,6 +164,24 @@ class CheckoutController extends Controller
             abort(403);
         }
 
-        return view('checkout.success', ['order' => $order]);
+        $midtransData = null;
+        if (config('midtrans.enabled')) {
+            try {
+                \Midtrans\Config::$serverKey = config('midtrans.server_key');
+                \Midtrans\Config::$isProduction = (bool) config('midtrans.is_production');
+
+                // coba ambil status transaksi Midtrans dengan order id prefiks 'order-'
+                $orderId = 'order-' . $order->id;
+                $status = \Midtrans\Transaction::status($orderId);
+
+                if (!empty($status)) {
+                    $midtransData = $status;
+                }
+            } catch (\Exception $e) {
+                logger()->warning('Midtrans status fetch failed: ' . $e->getMessage());
+            }
+        }
+
+        return view('checkout.success', ['order' => $order, 'midtrans' => $midtransData]);
     }
 }

@@ -366,6 +366,36 @@ Ubah ke sesuai kebutuhan (mis: 3 hari → `addDays(3)`)
 
 ---
 
+## 🔁 Midtrans Integration (Added)
+
+If you want to replace manual bank transfer with Midtrans Snap (recommended), do the following:
+
+- Install the PHP SDK:
+
+```bash
+composer require midtrans/midtrans-php
+```
+
+- Add these to your `.env`:
+
+```
+MIDTRANS_ENABLED=true
+MIDTRANS_SERVER_KEY=your_server_key_here
+MIDTRANS_CLIENT_KEY=your_client_key_here
+MIDTRANS_IS_PRODUCTION=false
+```
+
+- The project includes a config file at `config/midtrans.php` and an endpoint for Midtrans webhook:
+
+- Webhook route: `/payment/midtrans/webhook` (POST)
+
+- Flow: when `MIDTRANS_ENABLED=true`, the checkout flow will create a Midtrans Snap transaction for orders with payment method `transfer` and redirect the buyer to Midtrans payment page. Midtrans notifications will update the `orders` table via the webhook.
+
+Notes:
+- Ensure your Midtrans Dashboard has the webhook URL configured when in production.
+- Test in sandbox (`MIDTRANS_IS_PRODUCTION=false`) first.
+
+
 ## 📞 Support
 
 Jika ada pertanyaan atau error, pastikan:

@@ -144,8 +144,20 @@
                                 class="w-4 h-4 text-blue-600 mt-1"
                             >
                             <label for="payment_transfer" class="ml-3 cursor-pointer">
-                                <span class="font-medium">Transfer Bank Manual</span>
-                                <p class="text-gray-600 text-sm">Transfer ke rekening BCA atau Mandiri</p>
+                                <span class="font-medium">
+                                    @if(config('midtrans.enabled'))
+                                        Midtrans (Virtual Account / E‑wallet)
+                                    @else
+                                        Transfer Bank Manual
+                                    @endif
+                                </span>
+                                <p class="text-gray-600 text-sm">
+                                    @if(config('midtrans.enabled'))
+                                        Anda akan diarahkan ke halaman pembayaran Midtrans setelah submit. Jika menggunakan VA, instruksi dan nomor akan tampil di halaman pembayaran.
+                                    @else
+                                        Transfer ke rekening BCA atau Mandiri
+                                    @endif
+                                </p>
                             </label>
                         </div>
                     </div>
