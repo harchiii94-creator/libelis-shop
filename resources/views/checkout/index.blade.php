@@ -158,6 +158,16 @@
                                         Transfer ke rekening BCA atau Mandiri
                                     @endif
                                 </p>
+
+                                @if(config('midtrans.enabled'))
+                                    <div class="mt-3 flex flex-wrap gap-2">
+                                        @foreach(config('midtrans.enabled_payments') as $method)
+                                            <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-gray-100 rounded text-gray-700">
+                                                {{ strtoupper($method) }}
+                                            </span>
+                                        @endforeach
+                                    </div>
+                                @endif
                             </label>
                         </div>
                     </div>

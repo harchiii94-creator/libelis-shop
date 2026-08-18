@@ -135,6 +135,8 @@ class CheckoutController extends Controller
                         'email' => $order->buyer_email,
                         'phone' => $order->buyer_phone,
                     ],
+                    // Tell Midtrans which payment channels to show (configurable)
+                    'enabled_payments' => config('midtrans.enabled_payments'),
                 ];
 
                 $response = $midtrans->createTransaction($params);

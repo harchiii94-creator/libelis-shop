@@ -17,6 +17,18 @@ MIDTRANS_ENABLED=true
 MIDTRANS_SERVER_KEY=YOUR_SERVER_KEY
 MIDTRANS_CLIENT_KEY=YOUR_CLIENT_KEY
 MIDTRANS_IS_PRODUCTION=false
+
+Optional: enable or limit which payment channels appear on the Midtrans Snap page by setting `MIDTRANS_ENABLED_PAYMENTS` as a comma-separated list. If not set, defaults to `gopay,dana,shopeepay,qris,credit_card,bank_transfer`.
+
+Example:
+
+```
+MIDTRANS_ENABLED=true
+MIDTRANS_SERVER_KEY=YOUR_SERVER_KEY
+MIDTRANS_CLIENT_KEY=YOUR_CLIENT_KEY
+MIDTRANS_IS_PRODUCTION=false
+MIDTRANS_ENABLED_PAYMENTS=gopay,dana,qris
+```
 ```
 
 3) Clear config cache
